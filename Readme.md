@@ -1,58 +1,63 @@
 
-call-stream
-===========
+streamback
+==========
 
-Turn repeatedly called callbacks into streams.
+Turn repeatedly called callbacks into streams. Pass a streamback!
 
 Installation
 ------------
 
 ```bash
-$ component install juliangruber/call-stream
+$ component install juliangruber/streamback
 # or
-$ npm install call-stream
+$ npm install streamback
 ```
 
 Usage
 -----
 
 ```javascript
-var call-stream = require('call-stream');
+var Streamback = require('streamback');
 
-var articleStream = call-stream();
-api.subscribe('article', articleStream); // gets called on every new article
+var articleStream = Streamback();
+api.subscribe('article', articleStream.feed()); // gets called on every new article
 
 articleStream.pipe(process.stdout);
 ```
 
-If you need a EventEmitter instead and e.g. wan't to combine two sources, use [juliangruber/fwd](https://github.com/juliangruber/fwd):
+If you need an EventEmitter instead and e.g. wan't to combine two sources, use [juliangruber/fwd](https://github.com/juliangruber/fwd):
 
 ```javascript
 var fwd = require('fwd');
-var EventEmitter = require('events').EventEmitter // or require('emitter')
-var call-stream = require('call-stream');
+var EventEmitter = require('events').EventEmitter; // or require('emitter')
+var Streamback = require('streamback');
 
-var articleStream = call-stream();
-var patternStream = call-stream();
-api.subscribe('article', articleStream); 
-api.subscribe('pattern', patternStream); 
+var articleStream = Streamback();
+var patternStream = Streamback();
+api.subscribe('article', articleStream.feed()); 
+api.subscribe('pattern', patternStream.feed()); 
 
-var dest = new EventEmitter();
+var events = new EventEmitter();
 
-fwd(articleStream, dest, {'data': 'article'});
-fwd(patternStream, dest, {'data': 'pattern'});
+fwd(articleStream, events, {'data': 'article'});
+fwd(patternStream, events, {'data': 'pattern'});
 
+events.on('article', function(){ ... });
+events.on('pattern', function(){ ... });
+
+// then you cold fwd `events` somewhere else
 ```
 
 Api
 ---
 
-### call-stream()
+### Streamback()
 
-Returns a new `call-stream`-Object that
+Returns a `streamback` stream.
 
-* can be passed to functions as a _callback_
-* emits the passed in data as a _Stream_
+### Streamback#feed()
+
+Returns a function to be passed as callback.
 
 License
 -------

@@ -1,0 +1,20 @@
+{
+  "name": "streamback",
+  "version": "0.0.1",
+  "description": "Turn repeatedly called callbacks into streams. Pass a streamback!",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/juliangruber/call-stream"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "expect.js": "*"
+  },
+  "keywords": [
+    "callback",
+    "stream"
+  ],
+  "author": "Julian Gruber <julian@juliangruber.com>",
+  "license": "MIT"
+}
