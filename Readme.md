@@ -59,6 +59,15 @@ Returns a `streamback` stream.
 
 Returns a function to be passed as callback.
 
+Tests
+-----
+
+```bash
+# clone this repository
+$ npm install
+$ mocha
+```
+
 License
 -------
 

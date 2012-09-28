@@ -1,6 +1,6 @@
 {
   "name": "streamback",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Turn repeatedly called callbacks into streams. Pass a streamback!",
   "main": "index.js",
   "repository": {
