@@ -59,6 +59,11 @@ Returns a `streamback` stream.
 
 Returns a function to be passed as callback.
 
+### Streamback#stop()
+### Streamback#start()
+
+When stopped, passed in data is simply dropped.
+
 Tests
 -----
 

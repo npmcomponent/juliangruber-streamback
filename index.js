@@ -5,16 +5,16 @@ module.exports = function() {
   s.readable = true;
   s.feed = function() {
     return function() {
-      if (s.paused) return;
+      if (s.stopped) return;
       var args = [].slice.call(arguments);
       s.emit.apply(s, ['data'].concat(args));
     }
   }
-  s.pause = function() {
-    s.paused = true;
+  s.stop = function() {
+    s.stopped = true;
   }
-  s.resume = function() {
-    s.paused = false;
+  s.start = function() {
+    s.stopped = false;
   }
   return s;
 };

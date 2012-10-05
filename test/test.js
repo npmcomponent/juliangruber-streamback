@@ -9,18 +9,21 @@ describe('Streamback', function() {
       expect(s).to.be.a(Stream);
       expect(s.readable).to.be.ok();
     });
-    it('should pause', function() {
+    it('should stop', function() {
       var s = Streamback();
-
-      var dest = new Stream();
-      dest.writable = true;
-      dest.write = function() {
+      s.on('data', function() {
         throw new Error('Should never happen');
-      }
-      s.pipe(dest);
-      s.pause();
-      s.feed()('foo');
+      });
+      s.stop();
+      s.feed()('data');
     });
+    it('should start', function(done) {
+      var s = Streamback();
+      s.on('data', done);
+      s.stop();
+      s.start();
+      s.feed()();
+    })
   });
   describe('Streamback#feed()', function() {
     it('should emit data', function() {
