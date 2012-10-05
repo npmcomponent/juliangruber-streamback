@@ -1,13 +1,20 @@
 var Stream = require('stream');
 
 module.exports = function() {
-  var callStream = new Stream;
-  callStream.readable = true;
-  callStream.feed = function() {
+  var s = new Stream;
+  s.readable = true;
+  s.feed = function() {
     return function() {
+      if (s.paused) return;
       var args = [].slice.call(arguments);
-      callStream.emit.apply(callStream, ['data'].concat(args));
+      s.emit.apply(s, ['data'].concat(args));
     }
   }
-  return callStream;
+  s.pause = function() {
+    s.paused = true;
+  }
+  s.resume = function() {
+    s.paused = false;
+  }
+  return s;
 };
