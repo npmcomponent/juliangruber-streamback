@@ -25,29 +25,6 @@ api.subscribe('article', articleStream.feed()); // gets called on every new arti
 articleStream.pipe(process.stdout);
 ```
 
-If you need an EventEmitter instead and e.g. wan't to combine two sources, use [juliangruber/fwd](https://github.com/juliangruber/fwd):
-
-```javascript
-var fwd = require('fwd');
-var EventEmitter = require('events').EventEmitter; // or require('emitter')
-var Streamback = require('streamback');
-
-var articleStream = Streamback();
-var patternStream = Streamback();
-api.subscribe('article', articleStream.feed()); 
-api.subscribe('pattern', patternStream.feed()); 
-
-var events = new EventEmitter();
-
-fwd(articleStream, events, {'data': 'article'});
-fwd(patternStream, events, {'data': 'pattern'});
-
-events.on('article', function(){ ... });
-events.on('pattern', function(){ ... });
-
-// then you cold fwd `events` somewhere else
-```
-
 Api
 ---
 
@@ -57,12 +34,15 @@ Returns a `streamback` stream.
 
 ### Streamback#feed()
 
-Returns a function to be passed as callback.
+Returns a function to be passed as callback. If multiple arguments are passed to this, they are combined to an array.
 
-### Streamback#stop()
-### Streamback#start()
+### Streamback#stop(), Streamback#start()
 
-When stopped, passed in data is simply dropped.
+When stopped, passed in data is dropped.
+
+### Streamback#pause(), Streamback#resume()
+
+Work as expected. Thanks, [pause-stream](https://github.com/dominictarr/pause-stream) :)
 
 Tests
 -----

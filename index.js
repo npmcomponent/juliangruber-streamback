@@ -1,20 +1,28 @@
 var Stream = require('stream');
+var Buffered = require('pause-stream');
 
 module.exports = function() {
   var s = new Stream;
   s.readable = true;
-  s.feed = function() {
+
+  var buffered = Buffered();
+  s.pipe(buffered);
+
+  buffered.feed = function() {
     return function() {
       if (s.stopped) return;
       var args = [].slice.call(arguments);
-      s.emit.apply(s, ['data'].concat(args));
+      var data = ['data'];
+      if (args.length == 1) data.push(args[0]);
+      if (args.length > 1) data.push(args);
+      s.emit.apply(s, data);
     }
   }
-  s.stop = function() {
+  buffered.stop = function() {
     s.stopped = true;
   }
-  s.start = function() {
+  buffered.start = function() {
     s.stopped = false;
   }
-  return s;
+  return buffered;
 };

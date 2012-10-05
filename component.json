@@ -2,10 +2,11 @@
   "name": "streamback",
   "repo": "juliangruber/streamback",
   "description": "Turn repeatedly called callbacks into streams. Pass a streamback!",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "keywords": ["stream", "callback", "streamback"],
   "dependencies": {
-    "juliangruber/stream": "*"
+    "juliangruber/stream": "*",
+    "juliangruber/pause-stream": "*"
   },
   "development": {},
   "scripts": [
