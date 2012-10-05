@@ -5,7 +5,6 @@
   "version": "0.1.0",
   "keywords": ["stream", "callback", "streamback"],
   "dependencies": {
-    "juliangruber/stream": "*",
     "juliangruber/pause-stream": "*"
   },
   "development": {},
