@@ -1,11 +1,11 @@
 {
   "name": "streamback",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Turn repeatedly called callbacks into streams. Pass a streamback!",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/juliangruber/call-stream"
+    "url": "http://github.com/juliangruber/streamback"
   },
   "dependencies": {
     "pause-stream": "*"
