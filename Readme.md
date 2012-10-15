@@ -48,9 +48,8 @@ Tests
 -----
 
 ```bash
-# clone this repository
 $ npm install
-$ mocha
+$ npm test
 ```
 
 License
