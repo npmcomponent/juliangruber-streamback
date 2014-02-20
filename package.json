@@ -1,26 +1,14 @@
 {
-  "name": "streamback",
-  "version": "0.1.2",
+  "name": "juliangruber-streamback",
   "description": "Turn repeatedly called callbacks into streams. Pass a streamback!",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/juliangruber/streamback"
-  },
-  "scripts": {
-    "test": "mocha"
-  },
-  "dependencies": {
-    "pause-stream": "~0.0.6"
-  },
-  "devDependencies": {
-    "mocha": "*",
-    "expect.js": "*"
-  },
+  "version": "0.1.2",
   "keywords": [
+    "stream",
     "callback",
-    "stream"
+    "streamback"
   ],
-  "author": "Julian Gruber <julian@juliangruber.com>",
+  "dependencies": {
+    "juliangruber-pause-stream": "git://github.com/npmcomponent/juliangruber-pause-stream.git"
+  },
   "license": "MIT"
 }

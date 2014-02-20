@@ -1,4 +1,4 @@
-var Stream = require('pause-stream');
+var Stream = require('juliangruber-pause-stream');
 
 module.exports = function() {
   var s = new Stream();
